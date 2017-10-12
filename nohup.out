@@ -1,0 +1,44 @@
+
+> wgw@1.0.0 start /home/ubuntu/wgw
+> nodemon --use-strict index.js
+
+[33m[nodemon] 1.11.0[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching: *.*[39m
+[32m[nodemon] starting `node --use-strict index.js`[39m
+events.js:182
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: EBADF: bad file descriptor, read
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! wgw@1.0.0 start: `nodemon --use-strict index.js`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the wgw@1.0.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /home/ubuntu/.npm/_logs/2017-09-01T15_33_03_595Z-debug.log
+(node:3377) DeprecationWarning: `openSet()` is deprecated in mongoose >= 4.11.0, use `openUri()` instead, or set the `useMongoClient` option if using `connect()` or `createConnection()`. See http://mongoosejs.com/docs/connections.html#use-mongo-client
+Server is running on 3000
+Db.prototype.authenticate method will no longer be available in the next major release 3.x as MongoDB 3.6 will only allow auth against users in the admin db and will no longer allow multiple credentials on a socket. Please authenticate using MongoClient.connect with auth credentials.
+{ Error: connect ECONNREFUSED 127.0.0.1:8080
+    at Object.exports._errnoException (util.js:1024:11)
+    at exports._exceptionWithHostPort (util.js:1047:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1150:14)
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8080 }
+{ Error: connect ECONNREFUSED 127.0.0.1:8080
+    at Object.exports._errnoException (util.js:1024:11)
+    at exports._exceptionWithHostPort (util.js:1047:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1150:14)
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8080 }
