@@ -18,37 +18,37 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // pass the passport middleware
 app.use(passport.initialize());
 
-app.use('/favicon.ico', express.static('server/static/images/favicon.ico'))
+// app.use('/favicon.ico', express.static('server/static/images/favicon.ico'))
 
-// load passport strategies
-const localSignupStrategy = require('./server/passport/local-signup');
-const localLoginStrategy = require('./server/passport/local-login');
-const localSignupStrategyAdmin = require('./server/passport/local-signup-admin');
-passport.use('local-signup', localSignupStrategy);
-passport.use('local-signup-admin', localSignupStrategyAdmin);
-passport.use('local-login', localLoginStrategy);
+// // load passport strategies
+// const localSignupStrategy = require('./server/passport/local-signup');
+// const localLoginStrategy = require('./server/passport/local-login');
+// const localSignupStrategyAdmin = require('./server/passport/local-signup-admin');
+// passport.use('local-signup', localSignupStrategy);
+// passport.use('local-signup-admin', localSignupStrategyAdmin);
+// passport.use('local-login', localLoginStrategy);
 
-// pass the authorization checker middleware
-const authCheckMiddleware = require('./server/middleware/auth-check');
-app.use('/api', authCheckMiddleware);
-const authCheckTemplateMiddleware = require('./server/middleware/auth-check-templates');
-app.use('/tmp', authCheckTemplateMiddleware);
+// // pass the authorization checker middleware
+// const authCheckMiddleware = require('./server/middleware/auth-check');
+// app.use('/api', authCheckMiddleware);
+// const authCheckTemplateMiddleware = require('./server/middleware/auth-check-templates');
+// app.use('/tmp', authCheckTemplateMiddleware);
 
-// routes
-const authRoutes = require('./server/routes/auth');
-const apiRoutes = require('./server/routes/api');
-const templateRoutes = require('./server/routes/templates');
-app.use('/auth', authRoutes);
-app.use('/api', apiRoutes);
-app.use('/tmp', templateRoutes);
-app.get('/linkedin', (req, res) => res.sendFile(path.join(__dirname+'/server/static/index.html')))
-app.get('/ed-slott', (req, res) => res.sendFile(path.join(__dirname+'/server/static/index.html')))
-app.get('/thank-you', (req, res) => res.sendFile(path.join(__dirname+'/server/static/index.html')))
-app.get('/inn-advisor-super-conference', (req, res) => res.sendFile(path.join(__dirname+'/server/static/index.html')))
-app.get('/inn-advisor-super-conference-email', (req, res) => res.sendFile(path.join(__dirname+'/server/static/index.html')))
-app.get('/nafa', (req, res) => res.sendFile(path.join(__dirname+'/server/static/index.html')))
-app.get('/nafa-mail', (req, res) => res.sendFile(path.join(__dirname+'/server/static/index.html')))
-app.get('/nafa-summit', (req, res) => res.sendFile(path.join(__dirname+'/server/static/index.html')))
+// // routes
+// const authRoutes = require('./server/routes/auth');
+// const apiRoutes = require('./server/routes/api');
+// const templateRoutes = require('./server/routes/templates');
+// app.use('/auth', authRoutes);
+// app.use('/api', apiRoutes);
+// app.use('/tmp', templateRoutes);
+// app.get('/linkedin', (req, res) => res.sendFile(path.join(__dirname+'/server/static/index.html')))
+// app.get('/ed-slott', (req, res) => res.sendFile(path.join(__dirname+'/server/static/index.html')))
+// app.get('/thank-you', (req, res) => res.sendFile(path.join(__dirname+'/server/static/index.html')))
+// app.get('/inn-advisor-super-conference', (req, res) => res.sendFile(path.join(__dirname+'/server/static/index.html')))
+// app.get('/inn-advisor-super-conference-email', (req, res) => res.sendFile(path.join(__dirname+'/server/static/index.html')))
+// app.get('/nafa', (req, res) => res.sendFile(path.join(__dirname+'/server/static/index.html')))
+// app.get('/nafa-mail', (req, res) => res.sendFile(path.join(__dirname+'/server/static/index.html')))
+// app.get('/nafa-summit', (req, res) => res.sendFile(path.join(__dirname+'/server/static/index.html')))
 
 
 
