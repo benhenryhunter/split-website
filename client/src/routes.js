@@ -1,4 +1,5 @@
 import HomePage from './containers/HomePage/HomePage.jsx';
+import ListiclePage from './containers/Listicle/ListiclePage.jsx';
 
 
 

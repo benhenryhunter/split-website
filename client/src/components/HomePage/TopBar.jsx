@@ -34,10 +34,11 @@ class TopBar extends React.Component {
             return (
                 <div>
                     <Drawer open={this.props.handler.open}
-                containerStyle={{position: 'fixed', backgroundColor:'black'}}
+                containerStyle={{position: 'fixed'}}
                 openSecondary={true}
                 onRequestChange={this.props.handler.hideSidebar}
                 docked={false}
+                containerClassName="SideBar"
                 >
                   <MobileSelectableList handlers={this.props.handler} home={()=>{this.goHome()}}/>
                 </Drawer>
@@ -49,7 +50,8 @@ class TopBar extends React.Component {
                     <Menu style={{fill:'white', marginTop:'30%', height: '40px', width: '40px'}}/>                    
                 }
                 iconStyleRight={{marginRight: '0px', marginTop: '0px'}}
-                style={{position:'fixed',backgroundColor: '#000', textAlign: 'center'}}
+                style={{position:'fixed', textAlign: 'center'}}
+                className="TopBar"
                 />
               </div>
             )
@@ -66,7 +68,8 @@ class TopBar extends React.Component {
                     }
                     iconElementLeft={<img style={{cursor: 'pointer'}} width='200px' src="/images/ARC-LogoWhite.png"/>}
                     onLeftIconButtonTouchTap={() => {this.goHome()}}
-                    style={{position:"fixed",backgroundColor:"#000"}}
+                    style={{position:"fixed"}}
+                    className="TopBar"
                     showMenuIconButton={true}
                 />
             )

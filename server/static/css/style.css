@@ -42,7 +42,7 @@ body {
 }
 
 html {
-  background-color: black;
+  background-color: white;
 }
 
 .main-body {
@@ -51,7 +51,7 @@ html {
   width:100%;
   /*padding:5%;*/
   /*background-image:url("https://blackmooncrypto.com/i/header.jpg");*/
-  background-color:#000;
+  background-color:white;
 }
 
 .header-logo {
@@ -267,3 +267,47 @@ th tr:hover{
   font-weight: 600
 }
 
+
+.color1 {
+  color:#9ed96c
+}
+.color2 {
+  color:#53ba82
+}
+.color3 {
+  color:#029b9a
+}
+.color4 {
+  color:#075269
+}
+.color5 {
+  color:#0c0537
+}
+
+.TopBar {
+  background-color:#029b9a;
+  /*position:relative !important;*/
+}
+
+.SideBar {
+  background-color:#53ba82 !important;
+}
+
+.ItemHeader {
+  display:inline-block
+}
+
+.ItemHeader h2 {
+  margin-left:10px;
+  display:inline-block;
+}
+
+.ItemHeader h3 {
+  margin-left:10px;
+  display:inline-block;
+}
+
+.ItemBody {
+  border-top: 2px solid black;
+  padding: 10px;
+}

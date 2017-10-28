@@ -35,20 +35,9 @@ app.use(passport.initialize());
 // app.use('/tmp', authCheckTemplateMiddleware);
 
 // // routes
-// const authRoutes = require('./server/routes/auth');
-// const apiRoutes = require('./server/routes/api');
-// const templateRoutes = require('./server/routes/templates');
-// app.use('/auth', authRoutes);
-// app.use('/api', apiRoutes);
-// app.use('/tmp', templateRoutes);
-// app.get('/linkedin', (req, res) => res.sendFile(path.join(__dirname+'/server/static/index.html')))
-// app.get('/ed-slott', (req, res) => res.sendFile(path.join(__dirname+'/server/static/index.html')))
-// app.get('/thank-you', (req, res) => res.sendFile(path.join(__dirname+'/server/static/index.html')))
-// app.get('/inn-advisor-super-conference', (req, res) => res.sendFile(path.join(__dirname+'/server/static/index.html')))
-// app.get('/inn-advisor-super-conference-email', (req, res) => res.sendFile(path.join(__dirname+'/server/static/index.html')))
-// app.get('/nafa', (req, res) => res.sendFile(path.join(__dirname+'/server/static/index.html')))
-// app.get('/nafa-mail', (req, res) => res.sendFile(path.join(__dirname+'/server/static/index.html')))
-// app.get('/nafa-summit', (req, res) => res.sendFile(path.join(__dirname+'/server/static/index.html')))
+const apiRoutes = require('./server/routes/api');
+app.use('/api', apiRoutes);
+app.get('*', (req, res) => res.sendFile(path.join(__dirname+'/server/static/index.html')))
 
 
 
