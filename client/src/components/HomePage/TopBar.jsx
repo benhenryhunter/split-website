@@ -1,15 +1,17 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import AppBar from 'material-ui/AppBar';
+import Drawer from 'material-ui/Drawer';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Link, IndexLink } from 'react-router';
 import FlatButton from 'material-ui/FlatButton';
-import {cyanA200} from 'material-ui/styles/colors';
-import Drawer from 'material-ui/Drawer';
-import MobileSelectableList from '../HomePage/MobileSelectableList.jsx';
-import IconButton from 'material-ui/IconButton';
+import {ListItem} from 'material-ui/List';
+import Home from 'material-ui/svg-icons/action/home';
+import Build from 'material-ui/svg-icons/action/build';
+import Face from 'material-ui/svg-icons/action/face';
+import Feedback from 'material-ui/svg-icons/action/feedback';
+import Email from 'material-ui/svg-icons/communication/email';
+import Phone from 'material-ui/svg-icons/maps/local-phone';
 import Menu from 'material-ui/svg-icons/navigation/menu';
-import MenuItem from 'material-ui/MenuItem';
-import ReactDOM from 'react-dom';
 
 
 /**
@@ -22,37 +24,60 @@ class TopBar extends React.Component {
         super(props, context);
     }
 
-    goHome() {
-        if (window.location.pathname == '/') {
-            this.props.handler.homeScroll()
-        } else {
-            window.location.href = '/'
-        }
+    // goHome() {
+    //     if (window.location.pathname == '/') {
+    //         this.props.handler.homeScroll()
+    //     } else {
+    //         window.location.href = '/'
+    //     }
+    // }
+    func(){
+        console.log("clicked")
     }
     render() {
-        if (this.props.handler.width < 1031) {
+        if (window.innerWidth < 1031) {
             return (
                 <div>
-                    <Drawer open={this.props.handler.open}
-                containerStyle={{position: 'fixed'}}
-                openSecondary={true}
-                onRequestChange={this.props.handler.hideSidebar}
-                docked={false}
-                containerClassName="SideBar"
-                >
-                  <MobileSelectableList handlers={this.props.handler} home={()=>{this.goHome()}}/>
-                </Drawer>
-                <AppBar
-                iconElementLeft={<img style={{cursor: 'pointer'}} width='200px' src="/images/ARC-LogoWhite.png"/>}
-                onLeftIconButtonTouchTap={() => {this.goHome()}}
-                onRightIconButtonTouchTap={this.props.handler.hideSidebar}
-                iconElementRight={
-                    <Menu style={{fill:'white', marginTop:'30%', height: '40px', width: '40px'}}/>                    
-                }
-                iconStyleRight={{marginRight: '0px', marginTop: '0px'}}
-                style={{position:'fixed', textAlign: 'center'}}
-                className="TopBar"
-                />
+                    <Drawer 
+                        open={this.props.drawer.open}
+                        containerStyle={{position: 'fixed'}}
+                        openSecondary={true}
+                        onRequestChange={this.props.drawer.handler}
+                        docked={false}
+                    >
+                        <ListItem
+                          primaryText="Home"
+                          leftIcon={<Home color="rgba(30, 144, 255, 0.87)"/>}
+                          value={1}      
+                         />
+                        <ListItem
+                          primaryText="About"
+                          leftIcon={<Face color="rgba(164, 30, 255, 0.87)"/>}
+                          value={2}     
+                        />  
+                        <ListItem
+                          primaryText="Services"
+                          leftIcon={<Build color="rgba(255, 129, 30, 0.87)"/>}
+                          value={3}
+                        />
+                        <ListItem
+                          primaryText="Testimonials"
+                          leftIcon={<Feedback color="rgba(10, 10, 10, 0.87)"/>}
+                          value={3}      
+                        />  
+                        <ListItem
+                          primaryText="Contact Us"
+                          leftIcon={<Email color="rgba(255, 30, 0, 0.87)"/>}
+                          value={3}    
+                        />
+                    </Drawer>
+                    <AppBar
+                        iconElementLeft={<a href='/'><img style={{cursor: 'pointer'}} width='50px' src="/images/CartoonMe.png"/></a>}
+                        onRightIconButtonTouchTap={this.props.drawer.handler}
+                        iconElementRight={<Menu style={{fill:'black', marginTop:'30%', height: '40px', width: '40px'}}/>}
+                        iconStyleRight={{marginRight: '0px', marginTop: '0px'}}
+                        style={{position:'fixed',backgroundColor: '#fff', textAlign: 'center'}}
+                    />
               </div>
             )
         } else {
@@ -60,25 +85,22 @@ class TopBar extends React.Component {
                 <AppBar
                     iconElementRight={
                         <div className='navigation-options'>
-                            <FlatButton style={{color:'white'}} primary={true} label='HOME' onTouchTap={() => {this.goHome()}}/>       
-                            <FlatButton style={{color:'white'}} primary={true} label='SERVICES' onTouchTap={this.props.handler.serviceScroll}/>  
-                            <FlatButton style={{color:'white'}} primary={true} label='TESTIMONIALS' onTouchTap={this.props.handler.testimonialScroll}/>   
-                            <FlatButton style={{color:'white'}} primary={true} label='CONTACT US' onTouchTap={this.props.handler.contactScroll}/>  
+                            <FlatButton style={{color:'white'}} primary={true} label='HOME' onTouchTap={this.func}/>       
+                            <FlatButton style={{color:'white'}} primary={true} label='SERVICES' onTouchTap={this.func}/>  
+                            <FlatButton style={{color:'white'}} primary={true} label='TESTIMONIALS' onTouchTap={this.func}/>   
+                            <FlatButton style={{color:'white'}} primary={true} label='CONTACT US' onTouchTap={this.func}/>  
                         </div>
                     }
-                    iconElementLeft={<img style={{cursor: 'pointer'}} width='200px' src="/images/ARC-LogoWhite.png"/>}
-                    onLeftIconButtonTouchTap={() => {this.goHome()}}
+                    iconElementLeft={<img style={{cursor: 'pointer'}} width='50px' src="/images/CartoonMe.png"/>}
+                    onLeftIconButtonTouchTap={this.props.click}
                     style={{position:"fixed"}}
                     className="TopBar"
                     showMenuIconButton={true}
                 />
-            )
-        }
+                )
+            }
     }
 };
 
-TopBar.propTypes = {
-  handler: PropTypes.object.isRequired
-};
 
 export default TopBar;

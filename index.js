@@ -5,7 +5,7 @@ const passport = require('passport');
 const path = require('path')
 
 // connect to the database and load models
-// require('./server/models').connect("localhost:27017/WGW");
+require('./server/models').connect("localhost:27017/destanee");
 // require('./server/models').connect("mongodb://"+process.env.MONGODB_USER+":"+process.env.MONGODB_PASS+"@mongo-db1.wgworkshops.net:27017,mongo-db2.wgworkshops.net:27017/WGW?authSource=admin&replicaSet=wgw-replica");
 
 const app = express();

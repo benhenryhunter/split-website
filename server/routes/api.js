@@ -1,73 +1,74 @@
 const express = require('express');
 const request = require('request');
+const fileUpload = require('express-fileupload');
 const router = new express.Router();
+const MongoClient = require('mongodb').MongoClient
+
+router.use(fileUpload())
+
+var url = 'mongodb://localhost:27017/destanee';
 
 
 
-// router.post('/updateHost', (req,res,date) =>{
-// 	var host = req.body
-// 	var mongoID = host.HostID
-// 	console.log(mongoID)
-// 	var url = apiHost + '/Host/' + mongoID
-// 	request(
-// 		{
-// 			url: url,
-// 			method: 'POST',
-// 		    headers: {
-// 		        'content-type': 'application/json',
-// 		    },
-// 		    json: host
-// 		}, function(error, response, data){
-// 			try {
-// 				res.status(200).json({
-// 		     		host: response.body
-// 		    	});
-// 			}
-// 			catch(error) {
-// 				res.status(500).json({
-// 		     		errors: error
-// 		    	});
-// 			}
-// 		}
-// 	)
-// })
+router.post('/upload', (req,res,data) =>{
+
+	if (!req.files)
+	  return res.status(400).send('No files were uploaded.');
+	
+	// The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
 
 
-// router.get('/tag/infusionsoft/:isid/:value', () => {
-// 	var urlOne = '/token'
-// 	request(urlOne, function(error, response, data) {
-// 		try {
-// 			console.log(response.AccessToken)
-// 			var url = 'https://api.infusionsoft.com/crm/rest/v1/contacts/' + req.params.isid + '/tags'
-// 			request({
-// 				url: url,
-// 				method: 'POST',
-// 			    headers: {
-// 			        'Content-Type': 'application/json',
-// 			        'Authorization': 'Bearer ' + response.AccessToken
-// 			    },
-// 			    json: {tagIds: [parseInt(req.params.value)]}
-// 			}, function(errorTwo, responseTwo, dataTwo) {
-// 				var parsedThree;
-// 				try {
-// 					console.log(dataTwo)
-// 					res.status(200).json({
-// 			     		registrant: responseTwo.body
-// 			    	});
-// 				} 
-// 				catch(err) {
-// 					console.log(err)
-// 				}
-// 			})
-// 		}
-// 		catch(err) {
-// 			console.log(err)
-// 			res.status(500).json({
-// 	     		errors: err
-// 	    	});
-// 		}
-// 	})  
-// })
+	req.files.image.mv(__dirname + "/../static/images/" + req.files.image.name, function(err) {
+	  if (err){
+	  	res.status(500).send(err);
+	  } else {
+		newTile({
+			"Title":req.body.title,
+			"Description":req.body.description,
+			"Image":"/images/"+req.files.image.name,
+		},res)
+	  }
+	});
+})
+
+function newTile(data, response){
+	MongoClient.connect(url, function(err, db) {
+		var col = db.collection('test');
+		col.insertOne(data,function(err,res){
+			if(err){
+				response.status(500).json({
+					errors: err
+				})
+			} else {
+				response.status(200).json({
+					status: res
+				})
+			}
+		})
+		db.close();
+	})
+}
+
+
+router.get('/items', (req,res) => {
+	MongoClient.connect(url, function(err, db) {
+		var col = db.collection('test');
+		col.find({}).toArray(function(err, items) {
+			if(!err){
+				res.status(200).json({
+			 		items: items
+				});
+			} else {
+				res.status(500).json({
+			 		errors: err
+				});
+			}
+		  });
+		db.close();
+	})
+})
+
+
 
 
 module.exports = router;
