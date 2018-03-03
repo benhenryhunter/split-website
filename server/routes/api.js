@@ -17,18 +17,36 @@ router.post('/upload', (req,res,data) =>{
 	
 	// The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
 
+	var files = [];
+	var fileKeys = Object.keys(req.files);
+	var mainImage = "";
+	var additionalImages = [];
 
-	req.files.image.mv(__dirname + "/../static/images/" + req.files.image.name, function(err) {
-	  if (err){
-	  	res.status(500).send(err);
-	  } else {
-		newTile({
-			"Title":req.body.title,
-			"Description":req.body.description,
-			"Image":"/images/"+req.files.image.name,
-		},res)
-	  }
+	var date = new Date();
+
+	fileKeys.forEach(function(key) {
+		if(key == "Image"){
+			mainImage = "/images/" + date.toString() + req.files[key].name
+			req.files[key].mv(__dirname + "/../static/images/" + date.toString() + req.files[key].name, function(err) {
+				if(err){
+					res.status(500).send(err)
+				}
+			})
+		} else {
+			additionalImages.push("/images/" + date.toString() + req.files[key].name)
+			req.files[key].mv(__dirname + "/../static/images/"+ date.toString() + req.files[key].name, function(err) {
+				if(err){
+					res.status(500).send(err)
+				}
+			})
+		}
 	});
+		newTile({
+			"Title":req.body.Title,
+			"Description":req.body.Description,
+			"Image":mainImage,
+			"AdditionalImages":additionalImages
+		},res)
 })
 
 function newTile(data, response){

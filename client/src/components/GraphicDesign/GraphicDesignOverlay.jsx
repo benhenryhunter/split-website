@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import Dialog from 'material-ui/Dialog';
+import ImageHandler from './ImageHandler.jsx';
 
 
 
@@ -93,13 +94,21 @@ class GraphicDesignOverlay extends React.Component {
     console.log(this.state.open);
   }
 
+  additionalImages(){
+  }
+
 
   render() {
     return (
       <div className='gd-overlay'>
         <h2 style={{textAlign:"center"}}>{this.props.tile.Title}</h2>
         <div className='image-container'>
+        {this.props.tile.AdditionalImages.length > 0 &&
+          <ImageHandler tile={this.props.tile}/>
+        }
+        {this.props.tile.AdditionalImages.length == 0 &&
           <img src={this.props.tile.Image}/>
+        }
         </div>
         <div className='description'>
           <p>{this.props.tile.Description}</p>

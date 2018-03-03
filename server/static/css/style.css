@@ -223,4 +223,8 @@ html {
 .image-container img {
   max-width: 100%;
   height:auto;
+  max-height: 50vh;
+}
+.sectional {
+  min-height:500px;
 }

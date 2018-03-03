@@ -17,6 +17,9 @@ class HomePage extends React.Component {
    constructor(props, context) {
     super(props, context);
     this.state = {
+      buttonStyle:{
+        transform:"scale(1)",
+      },
       graphicDesign: {
           width:"50%",
           maxHeight:"100vh",
@@ -187,8 +190,15 @@ class HomePage extends React.Component {
       })
     }
     this.setRotate()
-    setInterval(this.setRotate,100)
-    setInterval(this.rotatePen,100)
+    // setInterval(this.setRotate,100)
+    // setInterval(this.rotatePen,100)
+    if(window.innerWidth < 800){
+      this.setState({
+        buttonStyle:{
+          transform:"scale(.7)"
+        }
+      })
+    }
     // setInterval(this.changeLineLength,10)
     // setInterval(this.changeXPosition,8)
 
@@ -417,7 +427,7 @@ class HomePage extends React.Component {
           <div className="video-overlay" style={{display:this.state.overlayDisplay}}>
           </div>
           <div style={this.state.videoTitle}>
-            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+            <svg style={this.state.buttonStyle} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                width="200px" height="200px" viewBox="0 0 500 500" enableBackground="new 0 0 500 500" cursor="pointer" onClick={this.selectVideo} onMouseEnter={this.changeVideoFill} onMouseLeave={this.changeVideoFill}>
             <g id="Layer_2">
             </g>
@@ -481,7 +491,7 @@ class HomePage extends React.Component {
           <div className="graphic-overlay" style={{display:this.state.overlayDisplay}}>
           </div>
           <div style={this.state.graphicTitle}>
-            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="200px"
+            <svg style={this.state.buttonStyle} version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="200px"
                height="200px" viewBox="0 0 500 500" enableBackground="new 0 0 500 500" cursor="pointer" onClick={this.selectGraphicDesign} onMouseEnter={this.changeGraphicFill} onMouseLeave={this.changeGraphicFill}>
             <g id="Layer_2">
             </g>
@@ -543,7 +553,7 @@ class HomePage extends React.Component {
               <rect x="102.576" y="253.23" fill="#FFFFFF" width="15.483" height="23.926"/>
               <path fill="#6AC6B9" d="M102.576,245.491c0,0,12.668,25.333,0,37.999H84.984c0,0,3.521-19.002-21.109-30.26
                 C63.875,253.23,65.984,243.378,102.576,245.491z"/>
-              <g  transform={this.state.reverse} style={{transformOrigin:"center"}}>
+              <g transform={this.state.reverse} style={{transformOrigin:"center"}}>
                 <circle fill="#6AC6B9" cx="296.155" cy="158.891" r="78.111"/>
                 <g>
                   <path fill="#FFFFFF" d="M275.048,106.218c0,0,21.109-13.856,42.222,0l-21.112,36.139L275.048,106.218z"/>

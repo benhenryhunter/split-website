@@ -63,6 +63,7 @@ class GraphicDesign extends React.Component {
         this.setState({
           tiles
         });
+        console.log(tiles)
         this.randomizeImages()
 
       } else {
@@ -157,6 +158,7 @@ class GraphicDesign extends React.Component {
       autoDetectWindowHeight={false}
       style={{paddingTop: 0, height: '100vh'}}
       repositionOnUpdate={true}
+      autoDetectWindowHeight={true}
       >
       <GraphicDesignOverlay tile={this.state.tileSelected}/>
     </Dialog>

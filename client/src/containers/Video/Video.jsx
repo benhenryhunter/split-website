@@ -57,9 +57,48 @@ class Video extends React.Component {
 
   render() {
     return (
+      <div style={{height:"100%"}}>
         <video className="video" height="100%" width="100%" loop autoPlay>
           <source src="/video/WebsiteVideo.mp4"/>
         </video>
+        <div className='sectional'>
+          <div className="row">
+            <div className='col-lg-3'>
+              <p>image?</p>
+            </div>
+            <div className='col-lg-9'>
+              <p>Information</p>
+            </div>
+          </div>
+        </div>
+        <div className='sectional'>
+          <div className="row">
+            <div className='col-lg-9'>
+              <p>Information</p>
+            </div>
+            <div className='col-lg-3'>
+              <p>image?</p>
+            </div>
+          </div>
+        </div>
+        <div className='sectional'>
+          <div className="row">
+            <div className='col-lg-6'>
+              <p>image?</p>
+            </div>
+            <div className='col-lg-6'>
+              <p>Information</p>
+            </div>
+          </div>
+        </div>
+        <div className='sectional'>
+          <div className="row">
+            <div className='col-lg-12'>
+              <p>image?</p>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }
